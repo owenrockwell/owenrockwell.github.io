@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
+
+:root {
+    --purple: #474787;
+    --purpleDark: #2c2c54;
+}
+
+body {
+    background: #323232;
+    color: white;
+    font: 16px system-ui, "Segoe UI", Helvetica, Arial, sans-serif;
+    margin: 0;
+}
+
+header {
+    background: var(--purple);
+    padding-bottom: 16px;
+}
+
+h1 {
+    font-family: 'Krona One', sans-serif;
+    font-weight: 400;
+    margin: 0;
+}
+
+menu {
+    display: flex;
+    gap: 8px;
+}
+
+
+button {
+    background: var(--purple);
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.15s ease;
+}
+
+button:hover {
+    background: var(--purpleDark);
+    transition: 0.3s ease;
+}
+
+article, button, input {
+    border: 0;
+    border-radius: 4px;
+    padding: 8px 16px;
+}
+
+article {
+    background: #222;
+    margin-bottom: 24px;
+}
+
+.content {
+    max-width: 780px;
+    margin: auto;
+    padding: 32px 16px 0;
+}
