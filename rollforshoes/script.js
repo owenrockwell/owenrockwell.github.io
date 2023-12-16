@@ -137,8 +137,8 @@ function renderData() {
                         <h2>${player.PlayerName}</h2>    
                         <h3 class="control-row"><em>${player.XP} XP</em>
                             <div class="controls">
-                                <button onclick="addXP('${player.PlayerName}')">+</button>
-                                <button onclick="removeXP('${player.PlayerName}')">-</button>
+                                <button onclick="addXP('${player.PlayerName}')">+ XP</button>
+                                <button onclick="removeXP('${player.PlayerName}')">- XP</button>
                             </div>
                         </h3>
                     </div>
