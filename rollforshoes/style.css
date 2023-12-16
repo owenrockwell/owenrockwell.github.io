@@ -10,7 +10,7 @@
 body {
     background: #323232;
     color: white;
-    font: 16px system-ui, "Segoe UI", Helvetica, Arial, sans-serif;
+    font: 400 16px system-ui, "Segoe UI", Helvetica, Arial, sans-serif;
     margin: 0;
 }
 
@@ -44,7 +44,7 @@ em {
     font-style: normal;
 }
 
-h1 {
+h1, h2 {
     font-family: 'Krona One', sans-serif;
     font-weight: 400;
     margin: 0;
@@ -83,8 +83,8 @@ article {
 .article-header {
     display: flex;
     align-items: baseline;
-    gap: 16px;
-    padding-left: 24px;
+    gap: 32px;
+    padding-left: 8px;
 }
 
 .control-row {
@@ -97,7 +97,7 @@ article {
 .control-row .controls {
     opacity: 0.25;
     transition: 0.15s ease;
-
+    min-width: max-content;
 }
 
 .control-row:focus-within .controls,
@@ -113,7 +113,7 @@ article {
 }
 
 ul {
-    padding-bottom: 16px;
+    padding: 0 0 16px 24px;
 }
 
 li {

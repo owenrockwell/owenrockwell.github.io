@@ -92,7 +92,7 @@ function renderSkills(playerName, playerChildren, playerHTML) {
             playerHTML = renderSkills(playerName, child.Children, playerHTML)
         })
         
-        playerHTML += '<ul>'
+        playerHTML += '</ul>'
     }
 
   return playerHTML
