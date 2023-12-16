@@ -13,22 +13,22 @@ function getData() {
 
 function resetData() {
     if (confirm("Do you want to reset your player data?") == true) {
-        rollForShoesPlayers.length = 0;
+        rollForShoesPlayers.length = 0
         updateData()
     }
 }
 
 function exportData() {
-    const blob = new Blob([JSON.stringify(getData())], { type: 'text/plain' });
-    const url = URL.createObjectURL(blob);
+    const blob = new Blob([JSON.stringify(getData())], { type: 'text/plain' })
+    const url = URL.createObjectURL(blob)
   
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'roll-for-shoes.txt';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
+    const a = document.createElement('a')
+    a.href = url
+    a.download = 'roll-for-shoes.txt'
+    document.body.appendChild(a)
+    a.click()
+    document.body.removeChild(a)
+    URL.revokeObjectURL(url)
 }
 
 function isPlayerNameUnique(playerName) {
@@ -36,8 +36,9 @@ function isPlayerNameUnique(playerName) {
 }
 
 function addPlayer(playerName) {
-    if (playerName && isPlayerNameUnique(playerName)) {
-        rollForShoesPlayers.push({PlayerName: playerName, XP: 0, Children: [{Skill: 'Do Anything', Level: 1, Children: []}]})
+    const name =  playerName.trim()
+    if (name.trim() && isPlayerNameUnique(name)) {
+        rollForShoesPlayers.push({PlayerName: name, XP: 0, Children: [{Skill: 'Do Anything', Level: 1, Children: []}]})
         updateData()
     }
 }
@@ -58,7 +59,7 @@ function addSkill(playerName, parentSkillName, newSkillName) {
     const parentObject = findSkill(player.Children, parentSkillName)
 
     if (!newSkillName)
-        newSkillName = document.getElementById(`${playerName}-add-${parentSkillName}`).value
+        newSkillName = document.getElementById(`${playerName}-add-${parentSkillName}`).value.trim()
 
     if (newSkillName &&  !findSkill(player.Children, newSkillName)) {
         parentObject.Children.push({Skill: newSkillName, Level: (parentObject.Level + 1), Children: []})
@@ -86,8 +87,8 @@ function findSkill(children, skillName) {
 }
 
 function roll(playerName, skillName, skillLevel){
-    const diceElement = document.getElementById("dice");
-    const rollMax = skillLevel * 6;
+    const diceElement = document.getElementById("dice")
+    const rollMax = skillLevel * 6
     const roll = Math.floor(Math.random() * rollMax) + 1
     let text = `${playerName} used <em>${skillName}</em>, and rolled a <b><em>${roll}</em></b>.`
 
@@ -109,7 +110,7 @@ function renderSkills(playerName, playerChildren, playerHTML) {
                     <button onclick="roll('${playerName}','${child.Skill}', ${child.Level})">${child.Level}</button>
                     ${child.Skill}</div>
                 <div class="controls">
-                    <input id="${playerName}-add-${child.Skill}" type="text" placeholder="Add child skill"/>
+                    <input id="${playerName}-add-${child.Skill}" type="text" placeholder="Add a skill to ${child.Skill}"/>
                     <button onclick="addSkill('${playerName}', '${child.Skill}')">Add Skill</button>
                 </div>
             </li>`
