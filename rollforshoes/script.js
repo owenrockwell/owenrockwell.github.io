@@ -45,7 +45,7 @@ function addSkill(playerName, parentSkillName, newSkillName) {
     const parentObject = findSkill(player.Children, parentSkillName)
 
     if (!newSkillName)
-        newSkillName = document.getElementById(`${playerName}-add-${parentSkillName}`).value;
+        newSkillName = document.getElementById(`${playerName}-add-${parentSkillName}`).value
 
     if (newSkillName &&  !findSkill(player.Children, newSkillName)) {
         parentObject.Children.push({Skill: newSkillName, Level: (parentObject.Level + 1), Children: []})
@@ -54,7 +54,7 @@ function addSkill(playerName, parentSkillName, newSkillName) {
 }
 
 function findSkill(children, skillName) {
-  let skill = null;
+  let skill = null
 
   children.forEach(child => {
     if (child.Skill === skillName) {
@@ -69,7 +69,7 @@ function findSkill(children, skillName) {
     }
   })
 
-  return skill;
+  return skill
 }
 
 function getValue(id){
@@ -89,7 +89,7 @@ function renderSkills(playerName, playerChildren, playerHTML) {
                 <button onclick="addSkill('${playerName}', '${child.Skill}')">Skill</button>
             </li>`
             playerHTML = renderSkills(playerName, child.Children, playerHTML)
-        });
+        })
         
         playerHTML += '<ul>'
     }
@@ -117,18 +117,16 @@ function renderData() {
                     
                 playerHTML += '</article>'
                 
-            });
+            })
 
-
-            playerDataElement.innerHTML = playerHTML;
-
+            playerDataElement.innerHTML = playerHTML
         }
 }
 
 function updateData() {
     const playerData = JSON.stringify(rollForShoesPlayers)
     localStorage.setItem("rollForShoes", playerData)
-    renderData();
+    renderData()
 }
 
 function init() {
