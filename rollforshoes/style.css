@@ -1,8 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
 
 :root {
+    --blue: #34ace0;
+    --blue-dark: #227093;
     --purple: #474787;
-    --purpleDark: #2c2c54;
+    --purple-dark: #2c2c54;
 }
 
 body {
@@ -14,7 +16,32 @@ body {
 
 header {
     background: var(--purple);
+    padding: 32px 0 16px;
+}
+
+nav {
+    font-style: italic;
+    background: var(--purple-dark);
+    color: #ddd;
     padding-bottom: 16px;
+}
+
+nav .content {
+    padding-top: 16px;
+}
+
+a, em {
+    color: var(--blue);
+    transition: 0.15s ease;
+}
+
+a:hover {
+    color: var(--blue-dark);
+    transition: 0.3s ease;
+}
+
+em {
+    font-style: normal;
 }
 
 h1 {
@@ -38,7 +65,7 @@ button {
 }
 
 button:hover {
-    background: var(--purpleDark);
+    background: var(--purple-dark);
     transition: 0.3s ease;
 }
 
@@ -57,4 +84,8 @@ article {
     max-width: 780px;
     margin: auto;
     padding: 32px 16px 0;
+}
+
+li {
+    margin: 16px 0;
 }

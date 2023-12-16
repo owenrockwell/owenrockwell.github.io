@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => init(), {once: true})
 
 function getData() {
     try {
-        return JSON.parse(localStorage.getItem("rollForShoes"))
+        return JSON.parse(localStorage.getItem("rollForShoes")) ?? []
     }
 
     catch {
@@ -42,41 +42,63 @@ function addSkill(playerName, parentSkill, newSkillName) {
     const player = rollForShoesPlayers.find(obj => obj['PlayerName'] === playerName)
     const parentObject = findSkill(player.Children, parentSkill)
 
-    parentObject.Children.push({[newSkillName]: {Level: (parentObject.Level + 1), Children: []}})
+    if (!newSkillName)
+        newSkillName = document.getElementById(`${playerName}-add-${parentSkill}`).value;
+
+    parentObject.Children.push({Skill: newSkillName, Level: (parentObject.Level + 1), Children: []})
 
     updateData()
 
 }
 
 function findSkill(children, skillName) {
-    let skill
+  let skill = null;
 
-    children.forEach(child => {
-        if (child.Skill === skillName)
-            skill = child
-        else if (child.Children.length)
-            findSkill(child.Children, skillName)
-    })
+  children.forEach(child => {
+    if (child.Skill === skillName) {
+      skill = child
+    } else if (child.Children.length) {
+    
+      const nestedSkill = findSkill(child.Children, skillName)
 
-    return skill
- }
+      if (nestedSkill) {
+        skill = nestedSkill
+      }
+    }
+  })
 
- function renderSkills(child, playerName, playerHTML) {
-    playerHTML += `<li>${child.Skill}</li>`
-    playerHTML += `<button onclick="addSkill('${playerName}', 'DoAnything', 'DoBetter')">Skill</button>`
-    if (child?.Children?.length) {
-        child.Children.forEach(grandchild => {
-            renderSkills(grandchild, playerName, playerHTML)
-        })
+  return skill;
+}
+
+function getValue(id){
+    return document.getElementById(id).value
+}
+
+function renderSkills(playerName, playerChildren, playerHTML) {
+
+    if (playerChildren?.length) {
+        playerHTML += '<ul>'
+        
+        playerChildren.forEach(child => {
+            playerHTML += `<li>
+                <em>${child.Level}</em>
+                ${child.Skill}
+                <input id="${playerName}-add-${child.Skill}" type="text" placeholder="Add child skill"/>
+                <button onclick="addSkill('${playerName}', '${child.Skill}')">Skill</button>
+            </li>`
+            playerHTML = renderSkills(playerName, child.Children, playerHTML)
+        });
+        
+        playerHTML += '<ul>'
     }
 
-    return playerHTML;
- }
+  return playerHTML
+}
 
 function renderData() {
     const playerDataElement = document.querySelector("data")
 
-    if (!rollForShoesPlayers.length)
+    if (!rollForShoesPlayers?.length)
         playerDataElement.innerHTML = "No Player Data" 
     else
         {
@@ -89,10 +111,7 @@ function renderData() {
                     <h3>${player.XP} XP <button onclick="addXP('${player.PlayerName}')">+</button> <button onclick="removeXP('${player.PlayerName}')">-</button><h3>
                 `
                     
-                    player.Children.forEach(child => {
-                        playerHTML = renderSkills(child, player.PlayerName, playerHTML)
-                    });
-
+                playerHTML = renderSkills(player.PlayerName, player.Children, playerHTML)
                     
                 playerHTML += '</article>'
                 
