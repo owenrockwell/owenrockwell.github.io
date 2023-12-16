@@ -22,10 +22,15 @@
             <input id="newPlayerName" type="text" placeholder="New Player Name"/>
             <button onclick="addPlayer(document.getElementById('newPlayerName').value)">Add Player</button>
             <button onclick="resetData()">Reset</button>
+            <button onclick="exportData()">Export</button>
         </menu>
 
+        <div id="dice" class="content" tabindex="0">
+            <i>No dice rolls yet</i>
+        </div>
+
         <section class="content">
-            <data>Loading...</data>
+            <data><i>Loading...</i></data>
         </section>
 
     </body>

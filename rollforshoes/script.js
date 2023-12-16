@@ -18,6 +18,19 @@ function resetData() {
     }
 }
 
+function exportData() {
+    const blob = new Blob([JSON.stringify(getData())], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+  
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'roll-for-shoes.txt';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+}
+
 function isPlayerNameUnique(playerName) {
     return !rollForShoesPlayers.some(obj => obj['PlayerName'] === playerName)
 }
@@ -72,8 +85,17 @@ function findSkill(children, skillName) {
   return skill
 }
 
-function getValue(id){
-    return document.getElementById(id).value
+function roll(playerName, skillName, skillLevel){
+    const diceElement = document.getElementById("dice");
+    const rollMax = skillLevel * 6;
+    const roll = Math.floor(Math.random() * rollMax) + 1
+    let text = `${playerName} used <em>${skillName}</em>, and rolled a <b><em>${roll}</em></b>.`
+
+    if (roll === rollMax)
+        text += ` CRITICAL SUCCESS! <a href="#${playerName}-add-${skillName}">Add a new skill</a>.`
+
+    diceElement.innerHTML = text
+    diceElement.focus()
 }
 
 function renderSkills(playerName, playerChildren, playerHTML) {
@@ -83,7 +105,9 @@ function renderSkills(playerName, playerChildren, playerHTML) {
         
         playerChildren.forEach(child => {
             playerHTML += `<li class="control-row">
-                <div><em>${child.Level}</em> ${child.Skill}</div>
+                <div class="control-row-title">
+                    <button onclick="roll('${playerName}','${child.Skill}', ${child.Level})">${child.Level}</button>
+                    ${child.Skill}</div>
                 <div class="controls">
                     <input id="${playerName}-add-${child.Skill}" type="text" placeholder="Add child skill"/>
                     <button onclick="addSkill('${playerName}', '${child.Skill}')">Add Skill</button>
