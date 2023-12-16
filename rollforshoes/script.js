@@ -44,7 +44,6 @@ function addSkill(playerName, parentSkill, newSkillName) {
 
     parentObject.Children.push({[newSkillName]: {Level: (parentObject.Level + 1), Children: []}})
 
-
     updateData()
 
 }
@@ -62,18 +61,17 @@ function findSkill(children, skillName) {
     return skill
  }
 
- function renderChildren(child, playerName, playerHTML) {
+ function renderSkills(child, playerName, playerHTML) {
     playerHTML += `<li>${child.Skill}</li>`
     playerHTML += `<button onclick="addSkill('${playerName}', 'DoAnything', 'DoBetter')">Skill</button>`
-    if (child?.Children.length) {
+    if (child?.Children?.length) {
         child.Children.forEach(grandchild => {
-            renderChildren(grandchild.Children, playerName, playerHTML)
+            renderSkills(grandchild, playerName, playerHTML)
         })
     }
 
     return playerHTML;
  }
-
 
 function renderData() {
     const playerDataElement = document.querySelector("data")
@@ -92,7 +90,7 @@ function renderData() {
                 `
                     
                     player.Children.forEach(child => {
-                        playerHTML = renderChildren(child, player.PlayerName, playerHTML)
+                        playerHTML = renderSkills(child, player.PlayerName, playerHTML)
                     });
 
                     
