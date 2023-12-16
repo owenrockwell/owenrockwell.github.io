@@ -24,7 +24,7 @@ function isPlayerNameUnique(playerName) {
 
 function addPlayer(playerName) {
     if (playerName && isPlayerNameUnique(playerName)) {
-        rollForShoesPlayers.push({PlayerName: playerName, XP: 0, Children: [{Skill: 'DoAnything', Level: 1, Children: []}]})
+        rollForShoesPlayers.push({PlayerName: playerName, XP: 0, Children: [{Skill: 'Do Anything', Level: 1, Children: []}]})
         updateData()
     }
 }
@@ -40,17 +40,17 @@ function removeXP(playerName) {
     updateData()
 }
 
-function addSkill(playerName, parentSkill, newSkillName) {
+function addSkill(playerName, parentSkillName, newSkillName) {
     const player = rollForShoesPlayers.find(obj => obj['PlayerName'] === playerName)
-    const parentObject = findSkill(player.Children, parentSkill)
+    const parentObject = findSkill(player.Children, parentSkillName)
 
     if (!newSkillName)
-        newSkillName = document.getElementById(`${playerName}-add-${parentSkill}`).value;
+        newSkillName = document.getElementById(`${playerName}-add-${parentSkillName}`).value;
 
-    parentObject.Children.push({Skill: newSkillName, Level: (parentObject.Level + 1), Children: []})
-
-    updateData()
-
+    if (newSkillName &&  !findSkill(player.Children, newSkillName)) {
+        parentObject.Children.push({Skill: newSkillName, Level: (parentObject.Level + 1), Children: []})
+        updateData()
+    }
 }
 
 function findSkill(children, skillName) {
