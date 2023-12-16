@@ -80,10 +80,40 @@ article {
     margin-bottom: 24px;
 }
 
+.article-header {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    padding-left: 24px;
+}
+
+.control-row {
+    display: flex;
+    gap: 8px;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.control-row .controls {
+    opacity: 0.25;
+    transition: 0.15s ease;
+
+}
+
+.control-row:focus-within .controls,
+.control-row:hover .controls {
+    opacity: 1;
+    transition: 0.3s ease;
+}
+
 .content {
     max-width: 780px;
     margin: auto;
     padding: 32px 16px 0;
+}
+
+ul {
+    padding-bottom: 16px;
 }
 
 li {

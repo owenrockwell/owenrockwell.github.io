@@ -82,11 +82,12 @@ function renderSkills(playerName, playerChildren, playerHTML) {
         playerHTML += '<ul>'
         
         playerChildren.forEach(child => {
-            playerHTML += `<li>
-                <em>${child.Level}</em>
-                ${child.Skill}
-                <input id="${playerName}-add-${child.Skill}" type="text" placeholder="Add child skill"/>
-                <button onclick="addSkill('${playerName}', '${child.Skill}')">Skill</button>
+            playerHTML += `<li class="control-row">
+                <div><em>${child.Level}</em> ${child.Skill}</div>
+                <div class="controls">
+                    <input id="${playerName}-add-${child.Skill}" type="text" placeholder="Add child skill"/>
+                    <button onclick="addSkill('${playerName}', '${child.Skill}')">Add Skill</button>
+                </div>
             </li>`
             playerHTML = renderSkills(playerName, child.Children, playerHTML)
         })
@@ -109,8 +110,14 @@ function renderData() {
                 playerHTML += `
                 <article>
                     <div class="article-header">
-                    <h2>${player.PlayerName}</h2>
-                    <h3>${player.XP} XP <button onclick="addXP('${player.PlayerName}')">+</button> <button onclick="removeXP('${player.PlayerName}')">-</button><h3>
+                        <h2>${player.PlayerName}</h2>    
+                        <h3 class="control-row"><em>${player.XP} XP</em>
+                            <div class="controls">
+                                <button onclick="addXP('${player.PlayerName}')">+</button>
+                                <button onclick="removeXP('${player.PlayerName}')">-</button>
+                            </div>
+                        </h3>
+                    </div>
                 `
                     
                 playerHTML = renderSkills(player.PlayerName, player.Children, playerHTML)
