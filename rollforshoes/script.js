@@ -12,8 +12,10 @@ function getData() {
 }
 
 function resetData() {
-    rollForShoesPlayers.length = 0;
-    updateData()
+    if (confirm("Do you want to reset your player data?") == true) {
+        rollForShoesPlayers.length = 0;
+        updateData()
+    }
 }
 
 function isPlayerNameUnique(playerName) {
