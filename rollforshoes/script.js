@@ -1,11 +1,10 @@
-const rollForShoesPlayers = getData()
+let rollForShoesPlayers = getData()
 document.addEventListener("DOMContentLoaded", () => init(), {once: true})
 
 function getData() {
     try {
         return JSON.parse(localStorage.getItem("rollForShoes")) ?? []
     }
-
     catch {
         return []
     }
@@ -29,6 +28,34 @@ function exportData() {
     a.click()
     document.body.removeChild(a)
     URL.revokeObjectURL(url)
+}
+
+function importData() {
+    const importButton = document.getElementById("import")
+    importButton.value = ""
+    importButton.addEventListener("change", () => {
+        const file = importButton.files[0];
+        if (importButton.value && file) {
+            const reader = new FileReader();
+            reader.readAsText(file);
+            reader.onload = function (data) {
+                try {
+                    dataArray = JSON.parse(data.target.result)
+                }
+                catch {
+                    window.alert("There was an error importing your data.")
+                }
+
+                if (Array.isArray(dataArray)) {
+                    rollForShoesPlayers = dataArray;
+                    updateData()
+                }
+                else
+                    window.alert("There was an error importing your data.")
+            }
+        }
+    }, {once: true})
+    importButton.click()
 }
 
 function isPlayerNameUnique(playerName) {
