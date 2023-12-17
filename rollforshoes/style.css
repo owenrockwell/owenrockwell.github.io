@@ -3,9 +3,11 @@
 :root {
     --blue: #34ace0;
     --blue-dark: #227093;
+    --grey: #3c3c3c;
+    --grey-dark: #222;
+    --grey-light: #d3d3d3;
     --purple: #474787;
     --purple-dark: #2c2c54;
-    --offwhite: #ddd;
 }
 
 body {
@@ -29,7 +31,7 @@ header {
 nav {
     font-style: italic;
     background: var(--purple-dark);
-    color: var(--offwhite);
+    color: var(--grey-light);
     padding-bottom: 16px;
 }
 
@@ -63,7 +65,7 @@ h1, h2 {
 
 #dice {
     border-radius: 4px;
-    background: #3c3c3c;
+    background: var(--grey);
     padding: 16px;
 }
 
@@ -92,7 +94,7 @@ article, button, input {
 }
 
 article {
-    background: #222;
+    background: var(--grey-dark);
     margin-bottom: 24px;
 }
 .control-row-title,
@@ -136,5 +138,5 @@ li {
 }
 
 i, .dicerolls {
-    color: var(--offwhite);
+    color: var(--grey-light);
 }
