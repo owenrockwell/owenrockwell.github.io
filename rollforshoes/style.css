@@ -146,6 +146,13 @@ article {
     transition: 0.3s ease;
 }
 
+.controls .delete {
+    max-width: 141px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 ul {
     padding-left: 0;
 }

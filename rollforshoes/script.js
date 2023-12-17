@@ -17,6 +17,13 @@ function resetData() {
     }
 }
 
+function deletePlayer(playerName) {
+    if (confirm(`Do you want to delete ${playerName}?`) == true) {
+        rollForShoesPlayers = rollForShoesPlayers.filter((word) => word['PlayerName'] !== playerName); 
+        updateData()
+    }
+}
+
 function exportData() {
     const blob = new Blob([JSON.stringify(getData())], { type: 'text/plain' })
     const url = URL.createObjectURL(blob)
@@ -179,8 +186,9 @@ function renderData() {
                     <div class="article-header">
                         <h2>${player.PlayerName}</h2>    
                         <div class="control-row">
-                            <div class="xp">${player.XP} XP</div>
+                            <div class="xp">${player.XP}&nbsp;XP</div>
                             <div class="controls">
+                                <button class="delete" onclick="deletePlayer('${player.PlayerName}')">Delete ${player.PlayerName}</button>
                                 <button onclick="addXP('${player.PlayerName}')">+ XP</button>
                                 <button onclick="removeXP('${player.PlayerName}')">- XP</button>
                             </div>
