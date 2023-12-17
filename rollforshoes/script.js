@@ -197,6 +197,19 @@ function updateData() {
     const playerData = JSON.stringify(rollForShoesPlayers)
     localStorage.setItem("rollForShoes", playerData)
     renderData()
+    addEnterEvent()
+}
+
+function addEnterEvent() {
+    const inputs = document.querySelectorAll('input[type="text"]')
+
+    inputs.forEach(input => {
+        input.addEventListener("keyup", (press) => {
+            if (press.key === "Enter") 
+                input.parentElement.querySelector("button")?.click()
+        })
+    });
+
 }
 
 function init() {
