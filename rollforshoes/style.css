@@ -56,7 +56,7 @@ menu, .menu-buttons {
     }
 }
 
-a, em {
+a, em, .xp {
     color: var(--blue);
     transition: 0.15s ease;
 }
@@ -92,7 +92,6 @@ button {
     cursor: pointer;
     font-weight: bold;
     transition: 0.15s ease;
-    /* position: relative; */
 }
 
 button:hover {
@@ -100,17 +99,22 @@ button:hover {
     transition: 0.3s ease;
 }
 
+button, input {
+    padding: 8px 16px;
+}
+
 article, button, input {
     border: 0;
     border-radius: 4px;
-    padding: 8px 16px;
 }
 
 article {
     background: var(--grey-dark);
     margin-bottom: 24px;
+    padding: 16px 16px 4px;
     position: relative;
 }
+
 .control-row-title,
 .article-header {
     display: flex;
@@ -120,9 +124,14 @@ article {
 
 .control-row {
     display: flex;
+    flex: 1;
     gap: 8px;
     justify-content: space-between;
     width: 100%;
+}
+.control-row .xp {
+    font-weight: bold;
+    font-size: 18px;
 }
 
 .control-row .controls {
@@ -137,18 +146,18 @@ article {
     transition: 0.3s ease;
 }
 
-.article-header,
 ul {
-    padding-left: 16px;
+    padding-left: 0;
 }
 
 li {
-    margin: 16px 0;
+    margin-top: 16px;
 }
 
 ul ul {
     border-left: var(--grey) dotted 2px;
     margin-left: 16px;
+    padding-left: 16px;
     position: relative;
     overflow-y: clip;
 }
@@ -157,12 +166,11 @@ ul ul li::before {
     content: "";
     position: absolute;
     height: 32px;
-    width: 12px;
+    width: 10px;
     margin-top: 16px;
     margin-left: -18px;
     border-top: var(--grey) dotted 2px;
 }
-
 
 ul ul li:last-of-type:before {
     border-left: solid var(--grey-dark) 2px;

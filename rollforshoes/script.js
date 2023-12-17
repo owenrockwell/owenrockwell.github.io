@@ -34,10 +34,10 @@ function importData() {
     const importButton = document.getElementById("import")
     importButton.value = ""
     importButton.addEventListener("change", () => {
-        const file = importButton.files[0];
+        const file = importButton.files[0]
         if (importButton.value && file) {
-            const reader = new FileReader();
-            reader.readAsText(file);
+            const reader = new FileReader()
+            reader.readAsText(file)
             reader.onload = function (data) {
                 try {
                     dataArray = JSON.parse(data.target.result)
@@ -47,7 +47,7 @@ function importData() {
                 }
 
                 if (Array.isArray(dataArray)) {
-                    rollForShoesPlayers = dataArray;
+                    rollForShoesPlayers = dataArray
                     updateData()
                 }
                 else
@@ -174,12 +174,13 @@ function renderData() {
                 <article>
                     <div class="article-header">
                         <h2>${player.PlayerName}</h2>    
-                        <h3 class="control-row"><em>${player.XP} XP</em>
+                        <div class="control-row">
+                            <div class="xp">${player.XP} XP</div>
                             <div class="controls">
                                 <button onclick="addXP('${player.PlayerName}')">+ XP</button>
                                 <button onclick="removeXP('${player.PlayerName}')">- XP</button>
                             </div>
-                        </h3>
+                        </div>
                     </div>
                 `
                     
@@ -213,5 +214,5 @@ function addEnterEvent() {
 }
 
 function init() {
-    updateData()   
+    updateData()
 }
