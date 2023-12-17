@@ -135,6 +135,6 @@ li {
     margin: 16px 0;
 }
 
-i {
+i, .dicerolls {
     color: var(--offwhite);
 }

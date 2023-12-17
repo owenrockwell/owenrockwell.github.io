@@ -114,16 +114,25 @@ function findSkill(children, skillName) {
 }
 
 function roll(playerName, skillName, skillLevel){
+    const diceRolls = []
+    for (let i = 0; i < skillLevel; i++) {
+        diceRolls.push(Math.floor(Math.random() * 6) + 1)
+    }
+    const diceRollsSum =   diceRolls.reduce((a, b) => a + b, 0)
+    
+    let text = `${playerName} used <em>${skillName}</em>, and rolled <em>${diceRollsSum}</em>`
+
+    if (diceRollsSum === skillLevel * 6)
+        text += `. CRITICAL SUCCESS! <a href="#${playerName}-add-${skillName}">Add a new skill</a>.`
+    else if (skillLevel > 1)
+        text += ` <span class="dicerolls"> (${diceRolls})</span>.`.replaceAll(",", " + ").replaceAll("6", "<em>6</em>")
+    else
+        text += '.'
+        
     const diceElement = document.getElementById("dice")
-    const rollMax = skillLevel * 6
-    const roll = Math.floor(Math.random() * rollMax) + 1
-    let text = `${playerName} used <em>${skillName}</em>, and rolled a <b><em>${roll}</em></b>.`
-
-    if (roll === rollMax)
-        text += ` CRITICAL SUCCESS! <a href="#${playerName}-add-${skillName}">Add a new skill</a>.`
-
     diceElement.innerHTML = text
     diceElement.focus()
+
 }
 
 function renderSkills(playerName, playerChildren, playerHTML) {
