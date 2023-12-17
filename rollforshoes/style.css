@@ -39,6 +39,23 @@ nav .content {
     padding-top: 16px;
 }
 
+menu, .menu-buttons {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+}
+
+@media (max-width: 600px) {
+    menu {
+        display: inline-block;
+    }
+
+    menu input {
+       width: 100%;
+       margin-bottom: 8px;
+    }
+}
+
 a, em {
     color: var(--blue);
     transition: 0.15s ease;
@@ -67,11 +84,6 @@ h1, h2 {
     border-radius: 4px;
     background: var(--grey);
     padding: 16px;
-}
-
-menu {
-    display: flex;
-    gap: 8px;
 }
 
 button {

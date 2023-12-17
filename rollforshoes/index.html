@@ -20,11 +20,14 @@
 
         <menu class="content">
             <input id="newPlayerName" type="text" placeholder="New Player Name"/>
-            <button onclick="addPlayer(document.getElementById('newPlayerName').value)">Add Player</button>
-            <button onclick="resetData()">Reset</button>
-            <button onclick="exportData()">Export</button>
-            <button onclick="importData()">Import</button>
-            <input id="import" type="file" />
+            
+            <div class="menu-buttons">
+                <button onclick="addPlayer(document.getElementById('newPlayerName').value)">Add Player</button>
+                <button onclick="resetData()">Reset</button>
+                <button onclick="exportData()">Export</button>
+                <button onclick="importData()">Import</button>
+                <input id="import" type="file" />
+            </div>
         </menu>
 
         <section class="content" role="status">
