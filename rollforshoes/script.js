@@ -141,15 +141,17 @@ function renderSkills(playerName, playerChildren, playerHTML) {
         playerHTML += '<ul>'
         
         playerChildren.forEach(child => {
-            playerHTML += `<li class="control-row">
-                <div class="control-row-title">
-                    <button onclick="roll('${playerName}','${child.Skill}', ${child.Level})">${child.Level}</button>
-                    ${child.Skill}</div>
-                <div class="controls">
-                    <input id="${playerName}-add-${child.Skill}" type="text" placeholder="Add a skill to ${child.Skill}"/>
-                    <button onclick="addSkill('${playerName}', '${child.Skill}')">Add Skill</button>
-                </div>
-            </li>`
+            playerHTML += `
+                <li class="control-row">
+                    <div class="control-row-title">
+                        <button onclick="roll('${playerName}','${child.Skill}', ${child.Level})">${child.Level}</button>
+                        ${child.Skill}</div>
+                    <div class="controls">
+                        <input id="${playerName}-add-${child.Skill}" type="text" placeholder="Add a skill to ${child.Skill}"/>
+                        <button onclick="addSkill('${playerName}', '${child.Skill}')">Add Skill</button>
+                    </div>
+                </li>
+            `
             playerHTML = renderSkills(playerName, child.Children, playerHTML)
         })
         
