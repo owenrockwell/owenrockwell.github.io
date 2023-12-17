@@ -97,11 +97,11 @@ button {
 }
 
 button:is(.reset, .delete) {
-    background: var(--red);
+    /* background: var(--red); */
 }
 
 button:is(.reset, .delete):hover {
-    background: var(--red-dark);
+    /* background: var(--red-dark); */
 }
 
 button:hover {
