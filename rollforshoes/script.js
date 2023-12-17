@@ -19,7 +19,7 @@ function resetData() {
 
 function deletePlayer(playerName) {
     if (confirm(`Do you want to delete ${playerName}?`) == true) {
-        rollForShoesPlayers = rollForShoesPlayers.filter((word) => word['PlayerName'] !== playerName); 
+        rollForShoesPlayers = rollForShoesPlayers.filter((player) => player['PlayerName'] !== playerName); 
         updateData()
     }
 }
@@ -66,11 +66,11 @@ function importData() {
 }
 
 function getPlayer(playerName) {
-    return rollForShoesPlayers.find(obj => obj['PlayerName'] === playerName)
+    return rollForShoesPlayers.find(player => player['PlayerName'] === playerName)
 }
 
 function isPlayerNameUnique(playerName) {
-    return !rollForShoesPlayers.some(obj => obj['PlayerName'] === playerName)
+    return !rollForShoesPlayers.some(player => player['PlayerName'] === playerName)
 }
 
 function addPlayer(playerName) {
