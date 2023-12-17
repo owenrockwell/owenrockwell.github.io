@@ -58,6 +58,10 @@ function importData() {
     importButton.click()
 }
 
+function getPlayer(playerName) {
+    return rollForShoesPlayers.find(obj => obj['PlayerName'] === playerName)
+}
+
 function isPlayerNameUnique(playerName) {
     return !rollForShoesPlayers.some(obj => obj['PlayerName'] === playerName)
 }
@@ -71,18 +75,18 @@ function addPlayer(playerName) {
 }
 
 function addXP(playerName) {
-    rollForShoesPlayers.find(obj => obj['PlayerName'] === playerName).XP++
+    getPlayer(playerName).XP++
     updateData()
 }
 
 function removeXP(playerName) {
-    const player = rollForShoesPlayers.find(obj => obj['PlayerName'] === playerName)
+    const player = getPlayer(playerName)
     player.XP > 0 && player.XP--
     updateData()
 }
 
 function addSkill(playerName, parentSkillName, newSkillName) {
-    const player = rollForShoesPlayers.find(obj => obj['PlayerName'] === playerName)
+    const player = getPlayer(playerName)
     const parentObject = findSkill(player.Children, parentSkillName)
 
     if (!newSkillName)
