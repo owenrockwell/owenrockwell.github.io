@@ -8,6 +8,8 @@
     --grey-light: #d3d3d3;
     --purple: #474787;
     --purple-dark: #2c2c54;
+    --red: #a33838;
+    --red-dark: #6e2424;
 }
 
 body {
@@ -94,6 +96,14 @@ button {
     transition: 0.15s ease;
 }
 
+button:is(.reset, .delete) {
+    background: var(--red);
+}
+
+button:is(.reset, .delete):hover {
+    background: var(--red-dark);
+}
+
 button:hover {
     background: var(--purple-dark);
     transition: 0.3s ease;
@@ -146,11 +156,15 @@ article {
     transition: 0.3s ease;
 }
 
-.controls .delete {
-    max-width: 141px;
+.controls .delete,
+input::placeholder {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+.controls .delete {
+    max-width: 141px;
 }
 
 ul {
