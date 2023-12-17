@@ -94,18 +94,18 @@ function removeXP(playerName) {
 
 function addSkill(playerName, parentSkillName, newSkillName) {
     const player = getPlayer(playerName)
-    const parentObject = findSkill(player.Children, parentSkillName)
+    const parentObject = getSkill(player.Children, parentSkillName)
 
     if (!newSkillName)
         newSkillName = document.getElementById(`${playerName}-add-${parentSkillName}`).value.trim()
 
-    if (newSkillName &&  !findSkill(player.Children, newSkillName)) {
+    if (newSkillName &&  !getSkill(player.Children, newSkillName)) {
         parentObject.Children.push({Skill: newSkillName, Level: (parentObject.Level + 1), Children: []})
         updateData()
     }
 }
 
-function findSkill(children, skillName) {
+function getSkill(children, skillName) {
   let skill = null
 
   children.forEach(child => {
@@ -113,7 +113,7 @@ function findSkill(children, skillName) {
       skill = child
     } else if (child.Children.length) {
     
-      const nestedSkill = findSkill(child.Children, skillName)
+      const nestedSkill = getSkill(child.Children, skillName)
 
       if (nestedSkill) {
         skill = nestedSkill
